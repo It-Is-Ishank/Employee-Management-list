@@ -7,14 +7,19 @@
 }
 
 body{
-    background-color: #1d2630;
+    background: #0f0c29; 
+    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); 
+    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); 
 }
 
 .header{
     width: 100%;
+    background: rgba(39,39,39,0.1);
+    backdrop-filter: blur(60px);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
     padding: 10px 30px;
     margin: auto;
-    background-color: black;
     text-align: center;
 }
 .header>h3{

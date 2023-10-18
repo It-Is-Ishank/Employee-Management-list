@@ -1,121 +1,141 @@
 function getDataFromUser() {
-    var name = document.getElementById("name").value;
-    var designation = document.getElementById("designation").value;
-    var number = document.getElementById("phoneNumber").value;
-    var email = document.getElementById("email").value;
+  var name = document.getElementById("name").value;
+  var designation = document.getElementById("designation").value;
+  var number = document.getElementById("phoneNumber").value;
+  var email = document.getElementById("email").value;
 
-    console.log(number);
-  
-    // Create an object to store the form data
-    var formData = {
-      name: name,
-      designation: designation,
-      phoneNumber: number,
-      email: email,
-    };
-  
-    return formData;
+  console.log(number);
+
+  // Create an object to store the form data
+  var formData = {
+    name: name,
+    designation: designation,
+    phoneNumber: number,
+    email: email,
+  };
+
+  return formData;
 }
 
-function getDataFromLocalStorage(){
-    var peopleList;
-    if(localStorage.getItem("peopleList")==null){
-        peopleList = [];
-    }
-    else{
-        peopleList = JSON.parse(localStorage.getItem("peopleList"));
-    }
-    return peopleList;
+function getDataFromLocalStorage() {
+  var peopleList;
+  if (localStorage.getItem("peopleList") == null) {
+    peopleList = [];
+  } else {
+    peopleList = JSON.parse(localStorage.getItem("peopleList"));
+  }
+  return peopleList;
 }
 
-  
+function validateForm() {
+  var data = getDataFromUser();
+  console.log(data);
 
-function validateForm(){
-    var data  = getDataFromUser();
-    console.log(data);
+  const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  const numberPattern =
+    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
 
-    const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    const numberPattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
-    
-    if(data.name == ""){
-        alert("Name is required");
-        return false;
-    }
+  if (data.name == "") {
+    alert("Name is required");
+    return false;
+  }
 
-    if(data.phoneNumber == ""){
-        alert("Number is required");
-        return false;
-    }
-    else if(!numberPattern.test(data.phoneNumber)){
-        alert("invalid Phone number");
-        return false;
-    }
+  if (data.phoneNumber == "") {
+    alert("Number is required");
+    return false;
+  } else if (!numberPattern.test(data.phoneNumber)) {
+    alert("invalid Phone number");
+    return false;
+  }
 
-    if(data.designation == ""){
-        alert("designation is required");
-        return false;
-    }
-    
+  if (data.designation == "") {
+    alert("designation is required");
+    return false;
+  }
 
-    if(data.email == ""){
-        alert("email is required");
-        return false;
-    }else if(emailPattern.test(email)){
-        alert("Invalid email Address");
-        return false;
-    }
+  if (data.email == "") {
+    alert("email is required");
+    return false;
+  } else if (emailPattern.test(email)) {
+    alert("Invalid email Address");
+    return false;
+  }
 
-    return true;
+  return true;
 }
 
-
-
-function AddData(){
-    if(validateForm()){
-        var data = getData();
-        var peopleList = getDataFromLocalStorage();
-
-        peopleList.push(data);
-
-        localStorage.setItem("peopleList",JSON.stringify(peopleList));
-        showData();
-        setEmpty();
-    }
-}
-function showData(){
+function AddData() {
+  if (validateForm()) {
+    var data = getDataFromUser();
     var peopleList = getDataFromLocalStorage();
-    var html = "";
-    peopleList.forEach(function (element , index){
-        html += `<tr>
-                    <td>${element.name}</td>
-                    <td>${element.email}</td>
-                    <td>${element.designation}</td>
-                    <td>${element.number}</td>
-                    <td>
-                        <button onclick="deleteData(${index}) class="btn btn-danger">Delete</button>
-                        <button onclick="updateData(${index}) class="btn btn-warning m-2">Update</button> 
-                    </td>
-                </tr>`;
-        document.querySelector("#crudTable tbody").innerHTML = html;
 
-    });
+    peopleList.push(data);
 
+    localStorage.setItem("peopleList", JSON.stringify(peopleList));
+    showData();
+    setEmpty();
+  }
 }
 
 // loads data when page reloads;
 document.onload = showData();
 
-function setEmpty(){
-    document.getElementById("name").value = "";
-    document.getElementById("designation").value = "";
-    document.getElementById("phoneNumber").value = "";
-    document.getElementById("email").value = "";
-  
+function setEmpty() {
+  document.getElementById("name").value = "";
+  document.getElementById("designation").value = "";
+  document.getElementById("phoneNumber").value = "";
+  document.getElementById("email").value = "";
 }
 
 // function to delete Data from the localStorage
 
-function deleteData(index){
-    var peopleList;
+function deleteData(index) {
+  var peopleList = getDataFromLocalStorage();
+  peopleList.splice(index, 1);
+  console.log(peopleList);
+  localStorage.setItem("peopleList", JSON.stringify(peopleList));
+  showData();
+}
 
+function updateData(index) {
+  document.getElementById("Submit").style.display = "none";
+  document.getElementById("Update").style.display = "block";
+  var peopleList = getDataFromLocalStorage();
+
+  document.getElementById("name").value = peopleList[index].name;
+  document.getElementById("designation").value = peopleList[index].designation;
+  document.getElementById("phoneNumber").value = peopleList[index].phoneNumber;
+  document.getElementById("email").value = peopleList[index].email;
+
+  document.querySelector("#Update").onclick = function(){
+    if(validateForm()){
+        var data = getDataFromUser();
+        peopleList[index].name = data.email;
+        peopleList[index].designation = data.designation;
+        peopleList[index].phoneNumber = data.phoneNumber;
+        peopleList[index].email = data.email;
+
+        localStorage.setItem("peopleList",JSON.stringify(peopleList));
+        showData();
+        
+        }
+    }
+}
+
+function showData(){
+  var peopleList = getDataFromLocalStorage();
+  var html = "";
+  peopleList.forEach(function (element, index){
+        html += `<tr>
+                    <td>${element.name}</td>
+                    <td>${element.email}</td>
+                    <td>${element.designation}</td>
+                    <td>${element.phoneNumber}</td>
+                    <td>
+                        <button onclick="deleteData(${index})" class="btn btn-danger">Delete</button>
+                        <button onclick="updateData(${index})" class="btn btn-warning m-2">Edit</button> 
+                    </td>
+                </tr>`;
+        document.querySelector("#crudTable tbody").innerHTML = html;
+    });
 }
