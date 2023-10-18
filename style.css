@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: #fff;
+
+}
+
+body{
+    background-color: #1d2630;
+}
+
+.header{
+    width: 100%;
+    padding: 10px 30px;
+    margin: auto;
+    background-color: black;
+    text-align: center;
+}
+.header>h3{
+    background-image: url(Unknown.jpeg); 
+    background-repeat: repeat; 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    font-size: 40px; 
+    text-align: center; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    font-family: 'Steelfish Rg', 'helvetica neue',
+                    helvetica, arial, sans-serif; 
+    font-weight: 800; 
+    -webkit-font-smoothing: antialiased; 
+}
+#Update{
+    display: none;
+}
