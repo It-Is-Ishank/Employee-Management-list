@@ -1,4 +1,4 @@
-function getData() {
+function getDataFromUser() {
     var name = document.getElementById("name").value;
     var designation = document.getElementById("designation").value;
     var number = document.getElementById("phoneNumber").value;
@@ -15,11 +15,23 @@ function getData() {
     };
   
     return formData;
-  }
+}
+
+function getDataFromLocalStorage(){
+    var peopleList;
+    if(localStorage.getItem("peopleList")==null){
+        peopleList = [];
+    }
+    else{
+        peopleList = JSON.parse(localStorage.getItem("peopleList"));
+    }
+    return peopleList;
+}
+
   
 
 function validateForm(){
-    var data  = getData();
+    var data  = getDataFromUser();
     console.log(data);
 
     const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -56,14 +68,22 @@ function validateForm(){
     return true;
 }
 
+
+
+function AddData(){
+    if(validateForm()){
+        var data = getData();
+        var peopleList = getDataFromLocalStorage();
+
+        peopleList.push(data);
+
+        localStorage.setItem("peopleList",JSON.stringify(peopleList));
+        showData();
+        setEmpty();
+    }
+}
 function showData(){
-    var peopleList;
-    if(localStorage.getItem("peopleList")==null){
-        peopleList = [];
-    }
-    else{
-        peopleList = JSON.parse(localStorage.getItem("peopleList"));
-    }
+    var peopleList = getDataFromLocalStorage();
     var html = "";
     peopleList.forEach(function (element , index){
         html += `<tr>
@@ -81,27 +101,9 @@ function showData(){
     });
 
 }
+
 // loads data when page reloads;
 document.onload = showData();
-
-function AddData(){
-    if(validateForm()){
-        var data = getData();
-        var peopleList;
-        if(localStorage.getItem("peopleList")==null){
-            peopleList = [];
-        }
-        else{
-            peopleList = JSON.parse(localStorage.getItem("peopleList"));
-        }
-
-        peopleList.push(data);
-
-        localStorage.setItem("peopleList",JSON.stringify(peopleList));
-        showData();
-        setEmpty();
-    }
-}
 
 function setEmpty(){
     document.getElementById("name").value = "";
@@ -109,4 +111,11 @@ function setEmpty(){
     document.getElementById("phoneNumber").value = "";
     document.getElementById("email").value = "";
   
+}
+
+// function to delete Data from the localStorage
+
+function deleteData(index){
+    var peopleList;
+
 }
