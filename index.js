@@ -23,26 +23,26 @@ function validateForm(){
     console.log(data);
 
     const emailPattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-    const numberPattern = /\d{10}/;
+    const numberPattern = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
     
-    // if(data.name == ""){
-    //     alert("Name is required");
-    //     return false;
-    // }
+    if(data.name == ""){
+        alert("Name is required");
+        return false;
+    }
 
-    if(data.number == ""){
+    if(data.phoneNumber == ""){
         alert("Number is required");
         return false;
     }
-    else if(!numberPattern.test(data.number)){
+    else if(!numberPattern.test(data.phoneNumber)){
         alert("invalid Phone number");
         return false;
     }
 
-    // if(data.designation == ""){
-    //     alert("designation is required");
-    //     return false;
-    // }
+    if(data.designation == ""){
+        alert("designation is required");
+        return false;
+    }
     
 
     if(data.email == ""){
