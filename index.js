@@ -124,7 +124,6 @@ function updateData(index) {
         }
     }
   };
-}
 
 function showData() {
   var peopleList = getDataFromLocalStorage();
