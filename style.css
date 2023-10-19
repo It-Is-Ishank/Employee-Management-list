@@ -46,10 +46,11 @@ body{
 #Update{
     display: none;
 }
-table{
-    max-width: 1rem;
+
+.container1{
     overflow-x: scroll;
 }
+
 td{
     overflow-x: scroll;
 }

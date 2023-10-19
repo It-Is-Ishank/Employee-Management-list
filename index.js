@@ -1,3 +1,18 @@
+var input = document.querySelector(".container");
+
+// Execute a function when the user presses a key on the keyboard
+input.addEventListener("keypress", function(event) {
+  // If the user presses the "Enter" key on the keyboard
+  if (event.key === "Enter") {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("Submit").click();
+  }
+});
+
+
+
 function getDataFromUser() {
   var name = document.getElementById("name").value;
   var designation = document.getElementById("designation").value;
@@ -56,7 +71,7 @@ function validateForm() {
   if (data.email == "") {
     alert("email is required");
     return false;
-  } else if (emailPattern.test(email)) {
+  } else if (!emailPattern.test(data.email)) {
     alert("Invalid email Address");
     return false;
   }
@@ -117,6 +132,9 @@ function updateData(index) {
 
         localStorage.setItem("peopleList",JSON.stringify(peopleList));
         showData();
+
+        document.getElementById("Submit").style.display = "block";
+        document.getElementById("Update").style.display = "none";
         
         }
     }
