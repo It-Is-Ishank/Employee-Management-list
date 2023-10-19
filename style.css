@@ -1,41 +1,72 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    color: #fff;
-
+/* use box shadow properly and set ui lil bit better */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color: #fff;
 }
 
-body{
-    background: #0f0c29; 
-    background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); 
-    background: linear-gradient(to right, #24243e, #302b63, #0f0c29); 
+body {
+  background: #0f0850;
+  background-image: url(vector.png);
+  
+  /* background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29); */
 }
 
-.header{
-    width: 100%;
-    background: rgba(39,39,39,0.1);
-    backdrop-filter: blur(60px);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
-    padding: 10px 30px;
-    margin: auto;
-    text-align: center;
+.header {
+  width: 100%;
+  min-width: 100vw;
+  background: rgba(61, 10, 3, 0.7);
+  backdrop-filter: blur(2px);
+  border-radius:  0px 0px 20px 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
+  padding: 10px 30px;
+  margin-bottom: 100px;
+  margin: auto;
+  text-align: center;
 }
-.header>h3{
-    background-image: url(Unknown.jpeg); 
-    background-repeat: repeat; 
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent; 
-    font-size: 40px; 
-    text-align: center; 
-    font-weight: bold; 
-    text-transform: uppercase; 
-    font-family: 'Steelfish Rg', 'helvetica neue',
-                    helvetica, arial, sans-serif; 
-    font-weight: 800; 
-    -webkit-font-smoothing: antialiased; 
+.header > h3 {
+  /* background-image: url(Unknown.jpeg);
+  background-repeat: none;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  
+  font-size: 40px;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: "Steelfish Rg", "helvetica neue", helvetica, arial, sans-serif;
+  font-weight: 800;
+  -webkit-font-smoothing: antialiased;
 }
-#Update{
-    display: none;
+.container {
+  font-size: 20px;
+  padding: 10px;  
+  border-radius: 20px;
+  margin-top: 50px;  
+  background: rgba(61, 10, 3, 0.7);
+  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+  backdrop-filter: blur( 2px );
+  -webkit-backdrop-filter: blur( 1px );
+  border-radius: 10px;
+  border: 1px solid rgba( 255, 255, 255, 0.18 );
+  object-fit: contain;
+  max-width: 90%;
+}
+#editBtn{
+    color: rgb(61, 10, 3);
+    font-weight: bold;
+}
+#Update {
+  display: none;
+}
+
+.container1 {
+  overflow-x: scroll;
+}
+
+td {
+  overflow-x: scroll;
 }
