@@ -56,7 +56,7 @@ function validateForm() {
   if (data.email == "") {
     alert("email is required");
     return false;
-  } else if (!!emailPattern.test(data.data.email)) {
+  } else if (!emailPattern.test(data.email)) {
     alert("Invalid email Address");
     return false;
   }
