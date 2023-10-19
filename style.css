@@ -24,7 +24,7 @@ body{
 }
 .header>h3{
     background-image: url(Unknown.jpeg); 
-    background-repeat: repeat; 
+    background-repeat: none; 
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent; 
     font-size: 40px; 
@@ -36,6 +36,20 @@ body{
     font-weight: 800; 
     -webkit-font-smoothing: antialiased; 
 }
+.container{
+    background: rgba(39,39,39,0.1);
+    backdrop-filter: blur(100px);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
+    object-fit: contain;
+    max-width: 70%;
+}
 #Update{
     display: none;
+}
+table{
+    max-width: 1rem;
+    overflow-x: scroll;
+}
+td{
+    overflow-x: scroll;
 }

@@ -125,6 +125,7 @@ function updateData(index) {
 function showData(){
   var peopleList = getDataFromLocalStorage();
   var html = "";
+  document.querySelector("#crudTable tbody").innerHTML="";
   peopleList.forEach(function (element, index){
         html += `<tr>
                     <td>${element.name}</td>
@@ -133,7 +134,7 @@ function showData(){
                     <td>${element.phoneNumber}</td>
                     <td>
                         <button onclick="deleteData(${index})" class="btn btn-danger">Delete</button>
-                        <button onclick="updateData(${index})" class="btn btn-warning m-2">Edit</button> 
+                        <button onclick="updateData(${index})" class="btn btn-warning m-2 w-5">Edit</button> 
                     </td>
                 </tr>`;
         document.querySelector("#crudTable tbody").innerHTML = html;
